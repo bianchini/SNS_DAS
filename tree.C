@@ -26,6 +26,7 @@ void make_tree(Int_t nevents=100)
 
   //fill the tree
   for (Int_t i = 0 ; i<nevents ; i++) {
+    if(i%5000==0) std::cout << "Processing event number " << i << std::endl;
     gRandom->Rannor(px,py);
     pz = px*px + py*py;
     random = gRandom->Rndm();
@@ -39,7 +40,7 @@ void make_tree(Int_t nevents=100)
 
   auto stop = high_resolution_clock::now(); 
   auto duration = duration_cast<milliseconds>(stop - start);  
-  std::cout << tree->GetEntries() << " done in " << duration.count()/1000. << " seconds" << std::endl; 
+  std::cout << tree->GetEntries() << " events done in " << duration.count()/1000. << " seconds" << std::endl; 
 
 }
 
