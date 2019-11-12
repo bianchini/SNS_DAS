@@ -43,4 +43,5 @@ if __name__ == '__main__':
     if tree.GetEntries()<=10:
         ROOT.ROOT.EnableImplicitMT()    
         array, labels = tree.AsMatrix(return_labels=True)
+        print(array.shape)
         print("Return numpy array and labels:\n{}\n{}\n".format(labels, array))

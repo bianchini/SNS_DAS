@@ -57,6 +57,7 @@ print "##############"
 meanpsi2S.Print()
 NJpsi.Print()
 Npsi.Print()
+cross_psi.Print()
 print "##############"
 
 #Now plot the data and the fit result
@@ -85,3 +86,5 @@ del ws
 #ws.Write()
 fOutput.Write()
 fOutput.Close()
+
+input()
