@@ -31,6 +31,17 @@ double Quadratic(const double *xx)
   return f0 + g*x + 0.5*(x*(B*x));
 }
 
+double Rosenbrock(const double *xx)
+{
+  if(NDIM%2==1) return 1.0;
+  const double alpha = 100.0;
+  double ret = 0.;
+  for(unsigned int i=0 ; i<NDIM/2; ++i){
+    ret += alpha*(xx[2*i+1] - xx[2*i]*xx[2*i])*(xx[2*i+1] - xx[2*i]*xx[2*i])  + (1-xx[2*i])*(1-xx[2*i]);
+  }
+  return ret;
+}
+
 void minimizer(const char * minName = "Minuit", const char *algoName = "Migrad"){
 
   TRandom3 ran(1234);
@@ -63,6 +74,7 @@ void minimizer(const char * minName = "Minuit", const char *algoName = "Migrad")
   minimum->SetPrintLevel(1);
 
   ROOT::Math::Functor f( &Quadratic, NDIM);
+  //ROOT::Math::Functor f( &Rosenbrock, NDIM);
   double step[NDIM] = {};
   for(unsigned int i=0 ; i<NDIM; ++i) step[i] += 0.01;
   double start[NDIM] = {};
@@ -70,10 +82,11 @@ void minimizer(const char * minName = "Minuit", const char *algoName = "Migrad")
   minimum->SetFunction(f);
 
   for(unsigned int i=0 ; i<NDIM; ++i){
-    minimum->SetVariable(i, Form("x%d",i), start[i], step[i]);
+    minimum->SetVariable(i, Form("x%d",i), start[i]-1.0, step[i]);
   }
 
   minimum->Minimize();
+
   const double *xs = minimum->X();
   std::cout <<  std::endl;
   std::cout << "NUMERICAL:  f(";
