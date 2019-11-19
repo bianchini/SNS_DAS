@@ -49,6 +49,10 @@ void read_tree()
 {
 
   TFile *infile = new TFile("tree_C.root", "READ");
+  if(infile->IsZombie()){
+    std::cout << "No file named tree_C.root could be opened. Return." << std::endl;
+    return;
+  }
   TTree *tree = (TTree*)infile->Get("tree");
   Float_t px, py, pz;
   Double_t random;
