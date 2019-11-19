@@ -12,7 +12,7 @@ except:
 
 # Helper function to create an example tree
 def make_tree(nevents):
-    outfile = ROOT.TFile("tree_py.root", "RECREATE")
+    outfile = ROOT.TFile("tree_array_py.root", "RECREATE")
     tree = ROOT.TTree("tree", "A simple Tree with simple variables")
     px = np.empty((1), dtype="float32")
     py = np.empty((1), dtype="float32")
