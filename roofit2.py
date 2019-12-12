@@ -90,12 +90,12 @@ xframe.Draw()
 c1.SaveAs("exercise_0.png")
 
 #Now save the data and the PDF into a Workspace, for later use for statistical analysis
-fOutput = ROOT.TFile("Workspace_mumufit.root","RECREATE")
+fOutput = ROOT.TFile("Workspace_mumufit_highstat.root","RECREATE")
 fInput.cd()
 ws = ROOT.RooWorkspace("ws") 
 getattr(ws,'import')(totPDF)
 getattr(ws,'import')(dataset)
-ws.writeToFile("Workspace_mumufit.root")
+ws.writeToFile("Workspace_mumufit_highstat.root")
 del ws
 
 #ws.Write()
