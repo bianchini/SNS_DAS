@@ -5,6 +5,9 @@
 #include <iostream>
 #include "TRandom3.h"
 #include "Math/IntegratorMultiDim.h"
+#include "TMatrixD.h"
+#include "TVectorD.h"
+#include "TMatrixDLazy.h"
 
 /*
   const double elements[16] = 
